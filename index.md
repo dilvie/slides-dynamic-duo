@@ -9,31 +9,34 @@ What are generic functions?
 ---
 
 ## Most JS built-ins are mostly generic (ES6):
-
+```js
 if (!('contains' in String.prototype)) {
   String.prototype.contains = function(str, startIndex) {
     return ''.indexOf.call(this, str, startIndex) !== -1;
   };
 }
+```
 
 ---
 
 ## Also works for Arrays (Not yet standardized):
-
+```js
 if (!('contains' in Array.prototype)) {
   Array.prototype.contains = function(str, startIndex) {
     return ''.indexOf.call(this, str, startIndex) !== -1;
   };
 }
+```
 
 ---
 
 ## .map() for Strings!
-
+```js
 String.prototype.map = function () {
   var args = [].slice.call(arguments);
   return [].map.apply(this, args).join('');
 };
+```
 
 ---
 
@@ -45,7 +48,7 @@ String.prototype.map = function () {
 ---
 
 ## Collection manipulation
-fn(x*): x*
+`fn(x*): x*`
 
 X = any type
 X* = list of x
@@ -55,7 +58,7 @@ e.g.: `.map()`, `.filter()`...
 ---
 
 ## Transforms
-fn(el [, options...] [, prev] [, index] [, list]): x
+`fn(el [, options...] [, prev] [, index] [, list]): x`
 
 el = current element of type x
 options = optional params
@@ -63,7 +66,7 @@ options = optional params
 ---
 
 ## Filters
-fn(el [, options...] [, prev] [, index] [, list]): bool
+`fn(el [, options...] [, prev] [, index] [, list]): bool`
 
 ---
 
