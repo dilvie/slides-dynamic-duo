@@ -50,8 +50,8 @@ String.prototype.map = function () {
 ## Collection manipulation
 `fn(x*): x*`
 
-X = any type
-X* = list of x
+* X = any type
+* X* = list of x
 
 e.g.: `.map()`, `.filter()`...
 
@@ -60,8 +60,8 @@ e.g.: `.map()`, `.filter()`...
 ## Transforms
 `fn(el [, options...] [, prev] [, index] [, list]): x`
 
-el = current element of type x
-options = optional params
+* el = current element of type x
+* options = optional params
 
 ---
 
