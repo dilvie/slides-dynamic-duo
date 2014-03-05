@@ -41,7 +41,7 @@ String.prototype.map = function () {
 ---
 
 ## Reality check
-* Please don't extend built-in prototypes
+Please don't extend built-in prototypes
 
 (except for standard polyfills)
 
