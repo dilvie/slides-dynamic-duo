@@ -10,63 +10,64 @@
 
 ## Benefits of static types
 
---
+---
 
 > "A  helpful analogy to understand the value of static typing is to look at it as putting pieces into a jigsaw puzzle. In Haskell, if a piece has  the wrong shape, it simply won't fit. In a dynamically typed language,  all the pieces are 1×1 squares and always fit, so you have to constantly  examine the resulting picture and check (through testing) whether it's  correct." — Bryan O'Sullivan, et al. "Real World Haskell"
 
---
+---
 
 ## Catches type errors
 
---
+---
 
 # (Overrated)
 
---
+---
 
 # Myth:
 
 It's impossible to write large programs in JavaScript because there is no way to know if your program is even passing around correct types.
 
---
+---
 
 # Reality:
 
 37Signals, Adobe, Dow Jones, eBay, Flickr, Paypal, LinkedIn, Groupon, Microsoft, Trello, Uber, Voxer, Yahoo!, Yammer, Walmart all have substantial projects written in JavaScript (Node).
 
---
+---
 
 ## Are they all crazy?
 
---
+---
 
 That warm cozy feeling you have about your compile time checking is a false sense of security.
 
---
+---
 
 ### Type correctness does not guarantee program correctness.
 
---
+---
 
 ## Type correctness does not guarantee program correctness.
 
---
+---
 
 # Type correctness does not guarantee program correctness.
 
---
+---
 
-> "The first step is fully admitting that the code you write is riddled with errors." - John-Carmack "Static Code Analysis" blog post -- a must read.
+> "The first step is fully admitting that the code you write is riddled with errors." - John-Carmack "Static Code Analysis" blog post
+(must read)
 
---
+---
 
-## You should be unit testing for program correctness in _every language_.
+## You should be doing automated testing for program correctness in _every language_.
 
---
+---
 
 ## JavaScript's tools are _underrated_.
 
---
+---
 
 ## JSHint catches:
 * Variable name typos
@@ -74,35 +75,169 @@ That warm cozy feeling you have about your compile time checking is a false sens
 * Unused variables
 * Cyclomatic complexity
 
---
+---
 
 ## Tern.js
 * Autocompletion on variables and properties
 * Function argument hints
-* Querying the type of an expression
+* Querying the type of an expression (type inference)
 * Finding the definition of something
 * Automatic refactoring
 
---
+---
 
 ## Outstanding runtime debugging
 
---
+---
 
 ## Trace.gl
 * Records every function call
-* Traces the value of every datum as it flows through the program
+* Traces every value as it flows through the program
 * Allows you to navigate asynchronous function calls by clicking on the functions
 * Shows delay between lambda creation and call time
 
---
+---
+
+## Theseus for Adobe Brackets
+* Inline code analysis
+* Integrates with live running Chrome and Node
+* Visual code coverage
+* Function call counts
+* Function return values
+
+---
+
+## Chrome developer tools heap profiler
+
+* Comparison view - before / after snapshots to find memory leaks
+* Dominators view - make sure objects are being garbage collected
+
+---
+
+## Static analysis can never replace the need to exercise code.
+
+---
+
+## Testing
+
+---
+
+## Keep modules small and independent
+
+---
+
+## Test the surface API of every module (unit tests)
+
+---
+
+## Holy grail: Aim for 100% code coverage
+* Write tests first
+* Never write code that does not satisfy a test assertion
+
+---
+
+## Test the whole system as a single unit (integration tests)
+
+---
+
+## A well maintained JavaScript codebase is:
+* Composed from simple modules
+* Linted
+* Unit tested
+* Peer reviewed
+* Integration tested
+
+---
+
+## By the time you're done with all that, most type-related errors are caught.
+
+---
+
+> "But... but... WHY do all that if you can just let the compiler do static analysis!?" - Dude looking at his cell phone a few minutes back
+
+---
+
+# Type correctness does not guarantee program correctness.
+
+---
+
+# True benefits of static analysis
+
+---
+
+# Reduce cognitive load
+
+```js
+function foo(options) {
+  //...
+}
+
+var myThing = foo({ bar: ? type ?});
+```
+
+---
+
+## JSDoc static analysis
+* Google Closure Compiler
+* WebStorm
+* DocBlockr SublimeText
+* Tern can parse JSDoc for type hints
+
+---
+
+> "A  helpful analogy to understand the value of static typing is to look at it as putting pieces into a jigsaw puzzle. In Haskell, if a piece has  the wrong shape, it simply won't fit. In a dynamically typed language,  all the pieces are 1×1 squares and always fit, so you have to constantly  examine the resulting picture and check (through testing) whether it's  correct." — Bryan O'Sullivan, et al. "Real World Haskell"
+
+---
+
+## Implies a good mapping of the memory graph.
+
+---
+
+## MAJOR perf implications
+
+---
+
+## Easy analysis of required memory allocation
+
+---
+
+## Tame the garbage collector
+
+---
+
+## You do have some control in JavaScript
+
+---
+
+## Code like a pirate!
+
+---
+
+## "Kill yer crew before ya sail!" - Colt McAnlis "The Joys of Static Memory JavaScript"
+#perfmatters https://developers.google.com/live/shows/905868411
+
+---
 
 
---
 
-## True benefits of static analysis:
+---
 
---
+## Disadvantage of static types:
+
+```c
+int increment(int x) {
+    int result; /* declare integer result */
+ 
+    result = x + 1;
+    return result;
+}
+```
+
+---
+
+# Only works for ints. What about long, float, etc...?
+
+---
 
 ## What are generic functions?
 
@@ -198,5 +333,7 @@ function increment(x) {
 
 ## Requirements
 * x must have an `.increment()` method.
+
+---
 
 ---
