@@ -224,11 +224,24 @@ var myThing = foo({ bar: ? type ?});
 
 ---
 
-## Disadvantage of static types:
+## Disadvantages of static types
+
+---
+
+> "Any sufficiently complicated C or Fortran program contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of Common Lisp." - Greenspun's tenth rule
+
+---
+
+# When languages lack dynamic types, people use ugly hacks to fake it.
+
+---
+
+## The void * hack
+
+---
 
 ```c
-int increment(int x)
-{
+int increment(int x) {
   int result;
 
   result = x + 1;
@@ -242,14 +255,52 @@ int increment(int x)
 
 ---
 
+```c
+enum type { 
+    TYPE_INT,
+    TYPE_LONG,
+    TYPE_FLOAT
+};
+
+void increment(enum type t, void *x) {
+  switch (t) {
+    case TYPE_CHAR:
+      (*(char *)x)++;
+    break;
+
+    case TYPE_INT:
+      (*(int *)x)++;
+    break;
+
+    case TYPE_FLOAT:
+      (*(float *)x)++;
+    break;
+  }
+}
+```
+
+---
+
+```c
+incr(TYPE_INT, &i);
+incr(TYPE_LONG, &l);
+incr(TYPE_FLOAT, &f);
+```
+
+---
+
 ## In JavaScript
 ```
 int increment(x) {
   var result;
 
+  // now with string concatenation!
+  // wait... wtf?
   result = x + 1;
   return result;
 }
+
+(ok... bad example. But this is going somewhere, really!)
 
 ```
 
@@ -311,8 +362,8 @@ Please don't extend built-in prototypes
 ## Collection manipulation
 `fn(x*): x*`
 
-* X = any type
-* X* = list of x
+* x = any type
+* x* = list of x
 
 e.g.: `.map()`, `.filter()`...
 
@@ -328,6 +379,12 @@ e.g.: `.map()`, `.filter()`...
 
 ## Filters
 `fn(el [, options...] [, prev] [, index] [, list]): bool`
+
+---
+
+## Filters
+`fn(el [, options...] [, prev] [, index] [, list]): bool`
+
 
 ---
 
