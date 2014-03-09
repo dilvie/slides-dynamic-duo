@@ -16,7 +16,7 @@
 
 ---
 
-## Catches type errors
+## Catch type errors
 
 ---
 
@@ -215,7 +215,7 @@ var myThing = foo({ bar: ? type ?});
 
 ---
 
-> "Kill yer crew before ya sail!" - Colt McAnlis ["The Joys of Static Memory JavaScript"](https://developers.google.com/live/shows/905868411) #perfmatters
+> "Kill yer crew before ya sail!" - Colt McAnlis ["The Joys of Static Memory JavaScript"](http://www.youtube.com/watch?v=RWmzxyMf2cE) #perfmatters @duhroach
 
 ---
 
@@ -256,7 +256,12 @@ enum type {
     TYPE_LONG,
     TYPE_FLOAT
 };
+```
+wait for it...
 
+---
+
+```c
 void increment(enum type t, void *x) {
   switch (t) {
     case TYPE_CHAR:
@@ -273,6 +278,8 @@ void increment(enum type t, void *x) {
   }
 }
 ```
+
+Tada! Simple!
 
 ---
 
@@ -300,9 +307,9 @@ int increment(x) {
   return result;
 }
 
-(ok... bad example. But this is going somewhere, really!)
-
 ```
+
+> That awkward moment when your example proves the counterpoint...
 
 ---
 
@@ -318,7 +325,7 @@ int increment(x) {
 
 ---
 
-## Lots of JS built-ins are (mostly) generic.
+## Lots of JS builtins are (mostly) generic.
 
 An approximation of ES6 String.prototype.contains()...
 ```js
@@ -418,6 +425,7 @@ sum(2, 2, 2); // 6
 ---
 
 ## What if you need to sum item prices?
+```js
 var item1 = {
     name: 'Gibson Les Paul',
     price: 4299.95
@@ -429,9 +437,7 @@ var item1 = {
   };
 
 sum(item1, item2); // NaN
----
-
-# Lifting
+```
 
 ---
 
@@ -452,9 +458,15 @@ function sum() {
 
 ---
 
-## Requirements
+## Old Requirements
 * Args must support += operator.
-* Args must have a .valueOf() method which returns something that can be coerced to a number.
+* Args must be coercible to numbers.
+
+---
+
+## New Requirements
+* Args must support += operator.
+* Args must have a .valueOf() method which returns a type coercible to number.
 
 ---
 
@@ -507,7 +519,7 @@ sum(1, 2, 3); // 6
 
 ---
 
-# After 15 years coding in statically typed languages, generic function syntax in C++ and Java still melts my brain. Too much noise and clutter just to bypass type enforcement.
+# Generics in C++ and Java melt my brain.
 
 ---
 
@@ -530,3 +542,68 @@ template<std::CopyConstructible T>
 # Poor readability is every bit as dangerous as ambiguous types.
 
 ---
+
+> "But haskell!"
+
+(Yeah. Type inferrence is cool!)
+
+---
+
+* Tern does type inference for developer feedback.
+
+* V8 and Firefox do type inference for runtime performance optimization.
+
+---
+
+## Ad hoc polymorphism
+* Special branching logic manually written for each type.
+
+---
+
+## Parametric polymorphism
+* Parameters satisfy generic requirements. No type branching needed.
+
+---
+
+## Other cool features of dynamic types
+
+---
+
+## Dynamic object extension
+
+---
+
+## Add properties at runtime
+
+```js
+var burger = {
+  pickels: 3,
+  lettuce: 1,
+  tomatoes: 1,
+  onions: 1
+};
+```
+
+---
+
+```js
+function addToppings(sandwich, toppings) {
+  var topping;
+
+  for (topping in toppings) {
+    if ( toppings.hasOwnProperty(topping) ) {
+      sandwich[topping] = toppings[topping];
+    }
+  }
+
+  return sandwich;
+}
+
+var myBurger = addToppings(burger, {
+  cheese: 1
+});
+```
+
+---
+
+## 

@@ -1,6 +1,6 @@
 {
   "name": "static-types-are-overrated-the-dynamic-duo-loose-types-and-object-extension",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "devDependencies": {
     "grunt": "~0.4.1",
