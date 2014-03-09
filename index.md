@@ -165,7 +165,7 @@ That warm cozy feeling you have about your compile time checking is a false sens
 
 ---
 
-# Reduce cognitive load
+## Reduce cognitive load
 
 ```js
 function foo(options) {
@@ -182,6 +182,12 @@ var myThing = foo({ bar: ? type ?});
 * WebStorm
 * DocBlockr SublimeText
 * Tern can parse JSDoc for type hints
+
+---
+
+## JSDoc type annotations
+
+[link](https://developers.google.com/closure/compiler/docs/js-for-compiler?csw=1#types)
 
 ---
 
@@ -213,23 +219,20 @@ var myThing = foo({ bar: ? type ?});
 
 ---
 
-## "Kill yer crew before ya sail!" - Colt McAnlis "The Joys of Static Memory JavaScript"
-#perfmatters https://developers.google.com/live/shows/905868411
-
----
-
-
+> "Kill yer crew before ya sail!" - Colt McAnlis ["The Joys of Static Memory JavaScript"](https://developers.google.com/live/shows/905868411)
+#perfmatters
 
 ---
 
 ## Disadvantage of static types:
 
 ```c
-int increment(int x) {
-    int result; /* declare integer result */
- 
-    result = x + 1;
-    return result;
+int increment(int x)
+{
+  int result;
+
+  result = x + 1;
+  return result;
 }
 ```
 
@@ -239,7 +242,24 @@ int increment(int x) {
 
 ---
 
-## What are generic functions?
+## In JavaScript
+```
+int increment(x) {
+  var result;
+
+  result = x + 1;
+  return result;
+}
+
+```
+
+---
+
+## I know these could be shorter. Focus, people!
+
+---
+
+# Generic functions
 
 ---
 
@@ -247,7 +267,9 @@ int increment(int x) {
 
 ---
 
-## Most JS built-ins are mostly generic (ES6):
+## Lots of JS built-ins are (mostly) generic.
+
+An approximation of ES6 String.prototype.contains()...
 ```js
 if (!('contains' in String.prototype)) {
   String.prototype.contains = function(str, startIndex) {
