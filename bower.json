@@ -1,0 +1,7 @@
+{
+  "name": "static-types-are-overrated-the-dynamic-duo-loose-types-and-object-extension",
+  "version": "0.0.0",
+  "dependencies": {
+    "reveal.js": "~2.6.1"
+  }
+}
