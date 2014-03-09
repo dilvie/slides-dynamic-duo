@@ -1,10 +1,114 @@
 ---
 
-What are generic functions?
+# Static Types Are Overrated: The Dynamic Duo – Loose Types And Object Extension
 
 ---
 
-# Generics work on any type that matches requirements.
+## What are static types?
+
+---
+
+## Benefits of static types
+
+--
+
+> "A  helpful analogy to understand the value of static typing is to look at it as putting pieces into a jigsaw puzzle. In Haskell, if a piece has  the wrong shape, it simply won't fit. In a dynamically typed language,  all the pieces are 1×1 squares and always fit, so you have to constantly  examine the resulting picture and check (through testing) whether it's  correct." — Bryan O'Sullivan, et al. "Real World Haskell"
+
+--
+
+## Catches type errors
+
+--
+
+# (Overrated)
+
+--
+
+# Myth:
+
+It's impossible to write large programs in JavaScript because there is no way to know if your program is even passing around correct types.
+
+--
+
+# Reality:
+
+37Signals, Adobe, Dow Jones, eBay, Flickr, Paypal, LinkedIn, Groupon, Microsoft, Trello, Uber, Voxer, Yahoo!, Yammer, Walmart all have substantial projects written in JavaScript (Node).
+
+--
+
+## Are they all crazy?
+
+--
+
+That warm cozy feeling you have about your compile time checking is a false sense of security.
+
+--
+
+### Type correctness does not guarantee program correctness.
+
+--
+
+## Type correctness does not guarantee program correctness.
+
+--
+
+# Type correctness does not guarantee program correctness.
+
+--
+
+> "The first step is fully admitting that the code you write is riddled with errors." - John-Carmack "Static Code Analysis" blog post -- a must read.
+
+--
+
+## You should be unit testing for program correctness in _every language_.
+
+--
+
+## JavaScript's tools are _underrated_.
+
+--
+
+## JSHint catches:
+* Variable name typos
+* Undefined variables
+* Unused variables
+* Cyclomatic complexity
+
+--
+
+## Tern.js
+* Autocompletion on variables and properties
+* Function argument hints
+* Querying the type of an expression
+* Finding the definition of something
+* Automatic refactoring
+
+--
+
+## Outstanding runtime debugging
+
+--
+
+## Trace.gl
+* Records every function call
+* Traces the value of every datum as it flows through the program
+* Allows you to navigate asynchronous function calls by clicking on the functions
+* Shows delay between lambda creation and call time
+
+--
+
+
+--
+
+## True benefits of static analysis:
+
+--
+
+## What are generic functions?
+
+---
+
+## Generics work on any type that matches requirements.
 
 ---
 
@@ -19,7 +123,7 @@ if (!('contains' in String.prototype)) {
 
 ---
 
-## Also works for Arrays (Not yet standardized):
+## Also works for Arrays (Warning: Not standardized!):
 ```js
 if (!('contains' in Array.prototype)) {
   Array.prototype.contains = function(str, startIndex) {
@@ -30,7 +134,7 @@ if (!('contains' in Array.prototype)) {
 
 ---
 
-## .map() for Strings!
+## .map() for Strings! (Don't try this in prod.)
 ```js
 String.prototype.map = function () {
   var args = [].slice.call(arguments);
