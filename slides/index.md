@@ -178,10 +178,10 @@ var myThing = foo({ bar: ? type ?});
 ---
 
 ## JSDoc static analysis
-* Google Closure Compiler
-* WebStorm
-* DocBlockr SublimeText
 * Tern can parse JSDoc for type hints
+* Google Closure Compiler warnings
+* WebStorm inline hints
+* DocBlockr SublimeText
 
 ---
 
@@ -192,10 +192,6 @@ var myThing = foo({ bar: ? type ?});
 ---
 
 > "A  helpful analogy to understand the value of static typing is to look at it as putting pieces into a jigsaw puzzle. In Haskell, if a piece has  the wrong shape, it simply won't fit. In a dynamically typed language,  all the pieces are 1×1 squares and always fit, so you have to constantly  examine the resulting picture and check (through testing) whether it's  correct." — Bryan O'Sullivan, et al. "Real World Haskell"
-
----
-
-## Implies a good mapping of the memory graph.
 
 ---
 
@@ -219,8 +215,7 @@ var myThing = foo({ bar: ? type ?});
 
 ---
 
-> "Kill yer crew before ya sail!" - Colt McAnlis ["The Joys of Static Memory JavaScript"](https://developers.google.com/live/shows/905868411)
-#perfmatters
+> "Kill yer crew before ya sail!" - Colt McAnlis ["The Joys of Static Memory JavaScript"](https://developers.google.com/live/shows/905868411) #perfmatters
 
 ---
 
@@ -289,6 +284,11 @@ incr(TYPE_FLOAT, &f);
 
 ---
 
+## Better implementation: Pass in a function pointer to operate on individual types.
+(more on this soon...)
+
+---
+
 ## In JavaScript
 ```
 int increment(x) {
@@ -306,7 +306,7 @@ int increment(x) {
 
 ---
 
-## I know these could be shorter. Focus, people!
+## I know these examples could be shorter. Focus, people!
 
 ---
 
@@ -362,8 +362,8 @@ Please don't extend built-in prototypes
 ## Collection manipulation
 `fn(x*): x*`
 
-* x = any type
-* x* = list of x
+* `x` = any type
+* `x*` = list of `x`
 
 e.g.: `.map()`, `.filter()`...
 
@@ -372,19 +372,25 @@ e.g.: `.map()`, `.filter()`...
 ## Transforms
 `fn(el [, options...] [, prev] [, index] [, list]): x`
 
-* el = current element of type x
-* options = optional params
+* `el` = current element of type `x`
+* `options` = optional params
+* `prev` = previous element in list
+* `index` = list index of current el
+* `list` = the list reference
 
 ---
 
 ## Filters
 `fn(el [, options...] [, prev] [, index] [, list]): bool`
 
+Truthy = on the list
+
 ---
 
-## Filters
-`fn(el [, options...] [, prev] [, index] [, list]): bool`
+## Reduction
+`fn(el [, options...] [, prev] [, index] [, list]): x`
 
+Accumulates a single value to return.
 
 ---
 
@@ -394,25 +400,133 @@ e.g.: `.map()`, `.filter()`...
 
 ## Type specific
 ```js
-function increment(x) {
-  return +x + 1;
+function sum() {
+  var i = 0,
+    result = 0;
+
+  while (i < arguments.length) {
+    result += +arguments[i];
+    i++;
+  }
+
+  return result;
 }
+
+sum(2, 2, 2); // 6
 ```
+
+---
+
+## What if you need to sum item prices?
+var item1 = {
+    name: 'Gibson Les Paul',
+    price: 4299.95
+  },
+  
+  item2 = {
+    name: 'Epiphone ES 339 Pro',
+    price: 395
+  };
+
+sum(item1, item2); // NaN
+---
+
+# Lifting
 
 ---
 
 ## Lifted
 ```js
-function increment(x) {
-  return x.increment();
+function sum() {
+  var i = 0,
+    result = 0;
+
+  while (i < arguments.length) {
+    result += +arguments[i].valueOf();
+    i++;
+  }
+
+  return result;
 }
 ```
 
 ---
 
 ## Requirements
-* x must have an `.increment()` method.
+* Args must support += operator.
+* Args must have a .valueOf() method which returns something that can be coerced to a number.
 
 ---
+
+# Item factory
+```js
+function item(options) {
+  var instance = Object.create(item.prototype);
+
+  instance.name = options.name;
+  instance.price = options.price;
+
+  return instance;  
+}
+
+item.prototype = {
+  valueOf: function () {
+    return this.price;
+  }
+};
+```
+
+---
+
+```js
+var item1 = item({
+    name: 'Gibson Les Paul',
+    price: 4299.95
+  }),
+  
+  item2 = item({
+    name: 'Epiphone ES 339 Pro',
+    price: 395
+  });
+
+sum(item1, item2); // 4694.95
+```
+
+---
+
+## Of course, numbers still work:
+
+sum(1, 2, 3); // 6
+
+---
+
+## Notice:
+* No special syntax for generic functions
+* No void *
+* No type noise at all in type-agnostic functions
+
+---
+
+# After 15 years coding in statically typed languages, generic function syntax in C++ and Java still melts my brain. Too much noise and clutter just to bypass type enforcement.
+
+---
+
+# sum() in C++
+```c++
+template<std::CopyConstructible T>
+  requires Addable<T>, Assignable<T>
+  T sum(T array[], int n, T result) {
+    for (int i = 0; i < n; ++i) {
+      result = result + array[i];
+    }
+
+    return result;
+  }
+```
+(Source: [generic-programming.org](http://www.generic-programming.org/languages/conceptcpp/tutorial/))
+
+---
+
+# Poor readability is every bit as dangerous as ambiguous types.
 
 ---
