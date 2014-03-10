@@ -1,5 +1,3 @@
----
-
 # Static Types Are Overrated: The Dynamic Duo – Loose Types And Object Extension
 
 ---
@@ -607,7 +605,3 @@ var myBurger = addToppings(burger, {
   cheese: 1
 });
 ```
-
----
-
-## 
