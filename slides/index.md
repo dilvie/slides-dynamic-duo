@@ -8,6 +8,10 @@
 
 ---
 
+## What are dynamic types?
+
+---
+
 ## Benefits of static types
 
 ---
