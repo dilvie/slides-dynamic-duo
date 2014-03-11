@@ -670,7 +670,7 @@ var myModel = _.extend(Object.create(model), Backbone.Events);
 
 ---
 
-![Me and Bruce](me-and-bruce.jpeg)
+![Me and Bruce](me-and-bruce.jpg)
 
 ---
 
