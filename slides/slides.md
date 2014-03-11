@@ -2,6 +2,10 @@
 
 ---
 
+#belikebruce
+
+---
+
 # Static Types Are Overrated: The Dynamic Duo – Loose Types And Object Extension
 
 _Eric Elliott_
@@ -120,12 +124,20 @@ That warm cozy feeling you have about your compile time checking is a false sens
 
 ---
 
+![tracegl](tracegl-screenshot.png)
+
+---
+
 ## Theseus for Adobe Brackets
 * Inline code analysis
 * Integrates with live running Chrome and Node
 * Visual code coverage
 * Function call counts
 * Function return values
+
+---
+
+![Theseus](theseus-screenshot.png)
 
 ---
 
