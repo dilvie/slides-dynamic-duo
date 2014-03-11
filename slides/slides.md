@@ -104,6 +104,10 @@ That warm cozy feeling you have about your compile time checking is a false sens
 
 ---
 
+## If you have never seen your program run, you have no idea whether or not it works.
+
+---
+
 ## Outstanding runtime debugging
 
 ---
@@ -310,7 +314,6 @@ incr(TYPE_FLOAT, &f);
 ---
 
 ## Better implementation: Pass in a function pointer to operate on individual types.
-(more on this soon...)
 
 ---
 
