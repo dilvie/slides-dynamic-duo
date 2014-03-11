@@ -265,11 +265,11 @@ var myThing = foo({ bar: ? type ?});
 
 ---
 
-> "Any sufficiently complicated C or Fortran program contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of Common Lisp." - Greenspun's tenth rule
+# When languages lack dynamic types, people use ugly hacks to fake it.
 
 ---
 
-# When languages lack dynamic types, people use ugly hacks to fake it.
+> "Any sufficiently complicated C or Fortran program contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of Common Lisp." - Greenspun's tenth rule
 
 ---
 
