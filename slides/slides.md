@@ -1,3 +1,7 @@
+> "Empty your mind, be formless. Shapeless, like water. If you put water into a cup, it becomes the cup. You put water into a bottle and it becomes the bottle. You put it in a teapot, it becomes the teapot. Now, water can flow or it can crash. Be water, my friend." - Bruce Lee
+
+---
+
 # Static Types Are Overrated: The Dynamic Duo – Loose Types And Object Extension
 
 _Eric Elliott_
@@ -205,7 +209,7 @@ var myThing = foo({ bar: ? type ?});
 
 ---
 
-> "A  helpful analogy to understand the value of static typing is to look at it as putting pieces into a jigsaw puzzle. In Haskell, if a piece has  the wrong shape, it simply won't fit. In a dynamically typed language,  all the pieces are 1×1 squares and always fit, so you have to constantly  examine the resulting picture and check (through testing) whether it's  correct." — Bryan O'Sullivan, et al. "Real World Haskell"
+## Jigsaw puzzles - every piece fits in its designated place, and _doesn't change size_.
 
 ---
 
@@ -312,22 +316,37 @@ incr(TYPE_FLOAT, &f);
 
 ## In JavaScript
 ```
-int increment(x) {
+function increment(x) {
   var result;
 
-  // now with string concatenation!
-  // wait... wtf?
   result = x + 1;
   return result;
 }
 
+```
+_But there's only one number type in JS, so this isn't fair. But wait! ..._
+
+---
+
+## Woo hoo! Parametric polymorphism for free!
+```
+function increment(x) {
+  var result;
+
+  // Now with string concatenation!
+  result = x + 1;
+  return result;
+}
+
+increment('1'); // 11?
+// WTF, JS! You're killin' me here!
 ```
 
 > That awkward moment when your example proves the counterpoint...
 
 ---
 
-## I know these examples could be shorter. Focus, people!
+## I know these examples could be better. Focus, people!
 
 ---
 
@@ -366,9 +385,11 @@ if (!('contains' in Array.prototype)) {
 ## .map() for Strings! (Don't try this in prod.)
 ```js
 String.prototype.map = function () {
-  var args = [].slice.call(arguments);
-  return [].map.apply(this, args).join('');
+  return [].map.apply(this, arguments).join('');
 };
+
+'123'.map(function (n) {return +n + 1; });
+// '234'
 ```
 
 ---
@@ -472,18 +493,6 @@ function sum() {
 
 ---
 
-## Old Requirements
-* Args must support += operator.
-* Args must be coercible to numbers.
-
----
-
-## New Requirements
-* Args must support += operator.
-* Args must have a `.valueOf()` method which returns a type coercible to number.
-
----
-
 # Item factory
 ```js
 function item(options) {
@@ -526,6 +535,16 @@ sum(1, 2, 3); // 6
 
 ---
 
+## Old Requirements
+* Args must be coercible to numbers.
+
+---
+
+## New Requirements
+* Args must have a `.valueOf()` method which returns a type coercible to number.
+
+---
+
 ## Notice:
 * No special syntax for generic functions
 * No void *
@@ -554,6 +573,10 @@ template<std::CopyConstructible T>
 ---
 
 # Poor readability is every bit as dangerous as ambiguous types.
+
+---
+
+# Styles of type polymorphism
 
 ---
 
@@ -624,3 +647,24 @@ var myModel = _.extend(Object.create(model), Backbone.Events);
 
 ---
 
+# Recap
+
+---
+
+## JavaScript's code analysis tools and static performance are actually pretty good.
+
+---
+
+## The ability to (easily) skip type annotations makes generic programming easier.
+
+---
+
+## Dynamic object extension is the  heart and soul of prototypal OO.
+
+---
+
+> "Be like water making its way through cracks. Do not be assertive, but adjust to the object, and you shall find a way around or through it. If nothing within you stays rigid, outward things will disclose themselves." - Bruce Lee
+
+---
+
+## Office hours starting now
