@@ -80,7 +80,7 @@ That warm cozy feeling you have about your compile time checking is a false sens
 
  #belikebruce
  
-(Tweet it. I'll wait.)
+(Tweet it! I'll wait.)
 
 ---
 
