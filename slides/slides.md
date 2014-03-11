@@ -78,6 +78,10 @@ That warm cozy feeling you have about your compile time checking is a false sens
 
 # Type correctness does not guarantee program correctness.
 
+ #belikebruce
+ 
+(Tweet it. I'll wait.)
+
 ---
 
 > "The first step is fully admitting that the code you write is riddled with errors." - John-Carmack "Static Code Analysis" blog post
