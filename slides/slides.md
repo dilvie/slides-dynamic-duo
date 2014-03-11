@@ -1,5 +1,17 @@
 # Static Types Are Overrated: The Dynamic Duo – Loose Types And Object Extension
 
+_Eric Elliott_
+
+---
+
+![Adobe Logo](adobe.jpeg)
+
+![Tout](tout.jpg) ![BandPage](bandpage.jpg) ![Zumba Fitness](zumba.jpg)
+
+---
+
+!["Programming JavaScript Applications"](pja.jpg)
+
 ---
 
 ## What are static types?
@@ -369,10 +381,10 @@ Please don't extend built-in prototypes
 ---
 
 ## Collection manipulation
-`fn(x*): x*`
+`fn([x], fn(x):*): [x]`
 
 * `x` = any type
-* `x*` = list of `x`
+* `[x]` = list of `x`
 
 e.g.: `.map()`, `.filter()`...
 
@@ -468,7 +480,7 @@ function sum() {
 
 ## New Requirements
 * Args must support += operator.
-* Args must have a .valueOf() method which returns a type coercible to number.
+* Args must have a `.valueOf()` method which returns a type coercible to number.
 
 ---
 
@@ -526,7 +538,7 @@ sum(1, 2, 3); // 6
 ---
 
 # sum() in C++
-```c++
+```c
 template<std::CopyConstructible T>
   requires Addable<T>, Assignable<T>
   T sum(T array[], int n, T result) {
@@ -542,18 +554,6 @@ template<std::CopyConstructible T>
 ---
 
 # Poor readability is every bit as dangerous as ambiguous types.
-
----
-
-> "But haskell!"
-
-(Yeah. Type inferrence is cool!)
-
----
-
-* Tern does type inference for developer feedback.
-
-* V8 and Firefox do type inference for runtime performance optimization.
 
 ---
 
@@ -605,3 +605,22 @@ var myBurger = addToppings(burger, {
   cheese: 1
 });
 ```
+
+---
+
+## Object / prototype extensibility
+
+---
+
+## Mixins
+
+var myModel = _.extend(Object.create(model), Backbone.Events);
+
+---
+
+## Plugins
+
+* jQuery
+
+---
+
