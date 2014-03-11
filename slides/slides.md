@@ -670,4 +670,8 @@ var myModel = _.extend(Object.create(model), Backbone.Events);
 
 ---
 
+![Me and Bruce](me-and-bruce.jpeg)
+
+---
+
 ## Office hours starting now
